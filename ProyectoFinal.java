@@ -80,12 +80,6 @@ public class ProyectoFinal {
                 System.out.println("Confirme la contraseña");
                 confirmarContrasena = readData.nextLine();
             }
-            // System.out.println("Registro exitoso");
-            // wait(1500);
-            // userRegistration(tipoIdentificacion, documentoIdentificacion, 
-            //                 nombre, apellido, correo, direccionResidencia, 
-            //                 ciudadResidencia, telefono, contrasena, 
-            //                 confirmarContrasena);
         }
         System.out.println("Registro exitoso");
             wait(1500);
@@ -134,10 +128,10 @@ public class ProyectoFinal {
     //Se solicitan los datos de inicio de sesión
     public static void requestSignInData(){
         String correo, contrasena;
-        byte attempts = 0;
+        byte attempts = 1;
 
         //Este ciclo permite que el usuario ingrese a la primera si sus datos son correctos, o que tenga máximo 3 intentos
-        while(attempts < 3){
+        while(attempts <= 3){
             System.out.println("Ingrese el correo");
             correo = readData.nextLine();
             System.out.println("Ingrese la contraseña");
@@ -149,9 +143,13 @@ public class ProyectoFinal {
                 break;
             }
             else{
-                System.out.println("Usuario incorrecto, intente una vez más...");
-                wait(1000);
-                attempts++;
+                if(attempts == 3){
+                    break;
+                }else{
+                    System.out.println("Usuario incorrecto, intente una vez más...");
+                    wait(1000);
+                    attempts++;
+                }
             }
         }
     }
@@ -186,7 +184,6 @@ public class ProyectoFinal {
                     requestSignInData();
                     break;
                 case 3:
-                System.out.println("Hasta Pronto!");
                     showMenu = false;
                     exit();
                     break;
